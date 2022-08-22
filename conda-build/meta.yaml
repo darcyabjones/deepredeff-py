@@ -1,0 +1,56 @@
+{% set name = "deepredeff-py" %}
+{% set url = "https://github.com/darcyabjones/deepredeff-py" %}
+{% set description = "A python port of the R deepredeff pipeline." %}
+
+{% set data = load_setup_py_data() %}
+
+package:
+  name: "{{ name | lower }}"
+  version: "{{ data['version'] }}"
+
+source:
+  path: "../"
+
+build:
+  noarch: python
+  entry_points:
+    - deepredeff=deepredeff.main:main
+  script: "{{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt"
+
+requirements:
+  host:
+    - python =3
+    - setuptools
+    - biopython
+    - pandas
+    - numpy
+    - pip
+    - tensorflow
+  run:
+    - python =3
+    - biopython
+    - pandas
+    - numpy
+    - pip
+    - tensorflow
+
+test:
+  imports:
+    - deepredeff
+  commands:
+    - deepredeff --help
+
+about:
+  home: "{{ url }}"
+  license: "MIT"
+  license_family: APACHE
+  license_file: "LICENSE"
+  summary: "{{ description }}"
+  doc_url: "{{ url }}"
+  dev_url: "{{ url }}"
+
+extra:
+  maintainers:
+    - Darcy Jones <darcy.a.jones@curtin.edu.au>
+  recipe-maintainers:
+    - darcyabjones
