@@ -29,7 +29,13 @@ e.g. `cat in.fasta | deepredeff --taxon bacteria - > out.tsv`
 
 ## Install
 
-We'll put this on the predector conda channel soon, in the meantime the following should work.
+You can install this from the predector conda channel.
+
+```
+conda install -c predector deepredeff-py
+```
+
+If you'd like to use pip, you can run:
 
 ```
 # use of Virtual environments (e.g. venv, conda) is strongly recommended.
